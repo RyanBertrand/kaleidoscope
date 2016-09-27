@@ -6,19 +6,20 @@ import THREE from 'threejs360';
 
 export default class ThreeSixtyViewer {
   constructor(options={}) {
-    Object.assign(this, {height: 360, width: 640, initialYaw: 90, verticalPanning: true}, options);
+    Object.assign(this, {height: 360, width: 640, initialYaw: 90, verticalPanning: true, initialFOV: 80}, options);
     let {
         height,
         width,
         container,
         containerId,
         initialYaw,
+        initialFOV,
         verticalPanning,
         onDragStart,
         onDragStop,
     } = this;
     this.renderer = new Renderer({height, width});
-    this.camera = new THREE.PerspectiveCamera(80, this.width / this.height, 0.1, 100);
+    this.camera = new THREE.PerspectiveCamera(initialFOV, this.width / this.height, 0.1, 100);
     this.controls = new Controls({
         camera: this.camera,
         renderer: this.renderer,
